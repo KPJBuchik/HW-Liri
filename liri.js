@@ -3,6 +3,7 @@ var keys = require("./keys.js");
 var fs = require("fs");
 var axios = require("axios");
 var Spotify = require("node-spotify-api")
+var spotify=new Spotify(keys.spotify)
 var userCommand = process.argv[2];
 var userSearch = process.argv[3];
 //var userSearch = process.argv.slice(2).join(" ");
@@ -60,11 +61,27 @@ function bandsData(userSearch) {
         function (response) {
 
             for (var i = 0; i < response.data.length; i++){
-                console.log(">+<>+<)>+<)>+<)>+<)>+<)>+<)>+<)>+<)")
+                console.log(">+<>+<)>+<)>+<)CONCERTS>+<)>+<)>+<)>+<)>+<)")
             console.log("Venue: "+response.data[i].venue.name)
             console.log("Location: "+response.data[i].venue.city)
             console.log("Date: "+response.data[i].datetime)
+            
             }
         })
 
+}
+
+function spotifyData (userSearch){
+    if (userSearch === undefined) {
+        userSearch = "The Sign"; 
+    }
+    spotify.search(  { type: "track", query: userSearch},
+        function (err, data) {
+            if (err) {
+                console.log("Error occurred: " + err);
+                return;
+            }
+            for (var i = 0; i < data.tracks.items.length; i++){
+console.log(data.tracks.items[i].name)}
+})
 }
