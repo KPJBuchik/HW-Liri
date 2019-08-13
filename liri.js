@@ -92,7 +92,7 @@ function spotifyData(userSearch) {
                 console.log("Song Preview: " + data.tracks.items[i].preview_url)
                 console.log("Album: " + data.tracks.items[i].album.name)
             }
-
+        })
 }
 //aghhhhh
 function doWhatItSays() {
