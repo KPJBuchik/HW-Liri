@@ -1,14 +1,14 @@
 require("dotenv").config();
 var keys = require("./keys.js");
 var fs = require("fs");
-var moment = require("moment")
+var moment = require("moment");
+moment().format();
 
 var axios = require("axios");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
 var userCommand = process.argv[2];
 var userSearch = process.argv.slice(3).join("+")
-//var userSearch = process.argv.slice(2).join(" ");
 
 if (userCommand === "movie-this") {
     movieData(userSearch);
@@ -36,7 +36,8 @@ function movieData(userSearch) {
         function (response) {
             if (userSearch === undefined) {
                 userSearch = "Mr. Nobody"
-                console.log("+><++><++><++><++><++><++><++><++><++><++><++><+");
+                
+                
 
             } else {
                 console.log("+><++><++><++><++><++><+MOVIES+><++><++><++><++><++><+")
@@ -64,11 +65,13 @@ function bandsData(userSearch) {
         function (response) {
 
             for (var i = 0; i < response.data.length; i++) {
-                console.log(">+<>+<)>+<)>+<)CONCERTS>+<)>+<)>+<)>+<)>+<)")
+                console.log("+><++><++><++><++><++><+CONCERTS+><++><++><++><++><++><+")
                 console.log("Venue: " + response.data[i].venue.name)
                 console.log("Location: " + response.data[i].venue.city)
-                console.log("Date: " +response.data[i].datetime)
-               // moment(datetime).format("MM/DD/YYYY")
+                
+                var date = moment(response.data[i].datetime).format("MM/DD/YYYY")
+                console.log("Date: " + date)
+                
 
             }
         })
@@ -86,7 +89,7 @@ function spotifyData(userSearch) {
                 return;
             }
             for (var i = 0; i < data.tracks.items.length; i++) {
-                console.log("=+=+=+=+=+SONGS+=+=+=+=+=+==")
+                console.log("+><++><++><++><++><++><+SONGS+><++><++><++><++><++><+")
                 console.log("Artist: " + data.tracks.items[i].artists[i].name)
                 console.log("Song: " + data.tracks.items[i].name)
                 console.log("Song Preview: " + data.tracks.items[i].preview_url)
@@ -94,7 +97,6 @@ function spotifyData(userSearch) {
             }
         })
 }
-//aghhhhh
 function doWhatItSays() {
     fs.readFile('random.txt', "utf8", function (err, data) {
         if (err) {
