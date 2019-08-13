@@ -1,11 +1,11 @@
 
 
-#LIRI APP
+# LIRI APP
 
 LIRI  is a Language Interpretation and Recognition Interface, a command line node app that searches the Online Movie Database, Bands In Town, and Spotify APIs.
 
 
-#LIRI recognizes these commands
+## LIRI recognizes these commands
 -Spotify-this-song
 -Concert-this
 -Movie-this
@@ -13,11 +13,11 @@ LIRI  is a Language Interpretation and Recognition Interface, a command line nod
 
 and will search the corresponding API for what the user types after the command.  
 
-#APIs 
+## APIs 
 -OMDB
 -Bands In Town
 
-#Technologies
+## Technologies
 -Javascript
 -Node.Js
 -Moment
