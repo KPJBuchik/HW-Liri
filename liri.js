@@ -2,7 +2,6 @@ require("dotenv").config();
 var keys = require("./keys.js");
 var fs = require("fs");
 var moment = require("moment");
-moment().format();
 
 var axios = require("axios");
 var Spotify = require("node-spotify-api");
@@ -36,8 +35,8 @@ function movieData(userSearch) {
         function (response) {
             if (userSearch === undefined) {
                 userSearch = "Mr. Nobody"
-                
-                
+
+
 
             } else {
                 console.log("+><++><++><++><++><++><+MOVIES+><++><++><++><++><++><+")
@@ -45,6 +44,7 @@ function movieData(userSearch) {
                 console.log("Released: " + response.data.Year);
                 console.log("IMDB Rating:  " + response.data.imdbRating);
                 console.log("Rotten Tomatoes: " + JSON.stringify(response.data.Ratings[1]))
+
                 console.log("Plot: " + response.data.Plot);
                 console.log("Cast: " + response.data.Actors);
                 console.log("language: " + response.data.Language);
@@ -64,14 +64,14 @@ function bandsData(userSearch) {
     axios.get("https://rest.bandsintown.com/artists/" + userSearch + "\/events?app_id=codingbootcamp").then(
         function (response) {
 
-            for (var i = 0; i < response.data.length; i++) {
+            for (var i = 0; i < 5; i++) {
                 console.log("+><++><++><++><++><++><+CONCERTS+><++><++><++><++><++><+")
                 console.log("Venue: " + response.data[i].venue.name)
                 console.log("Location: " + response.data[i].venue.city)
-                
+
                 var date = moment(response.data[i].datetime).format("MM/DD/YYYY")
                 console.log("Date: " + date)
-                
+
 
             }
         })
@@ -87,13 +87,15 @@ function spotifyData(userSearch) {
             if (err) {
                 console.log("Error occurred: " + err);
                 return;
-            }
-            for (var i = 0; i < data.tracks.items.length; i++) {
-                console.log("+><++><++><++><++><++><+SONGS+><++><++><++><++><++><+")
-                console.log("Artist: " + data.tracks.items[i].artists[i].name)
-                console.log("Song: " + data.tracks.items[i].name)
-                console.log("Song Preview: " + data.tracks.items[i].preview_url)
-                console.log("Album: " + data.tracks.items[i].album.name)
+            } else {
+                // console.log(JSON.stringify(data.tracks.items, null, 2));
+                for (var i = 0; i < 5; i++) {
+                    console.log("+><++><++><++><++><++><+SONGS+><++><++><++><++><++><+")
+                    console.log("Artist: " + data.tracks.items[i].artists[0].name)
+                    console.log("Song: " + data.tracks.items[i].name)
+                    console.log("Song Preview: " + data.tracks.items[i].preview_url);
+                    console.log("Album: " + data.tracks.items[i].album.name);
+                }
             }
         })
 }
@@ -103,10 +105,10 @@ function doWhatItSays() {
             return console.log(err);
         }
         else
-            var randomArray = data.split(',')
-        userCommand = randomArray[0]
-        userSearch = randomArray[1]
-        spotifyData(userSearch)
+            var randomArray = data.split(',');
+        userCommand = randomArray[0];
+        userSearch = randomArray[1];
+        spotifyData(userSearch);
 
     });
 }
