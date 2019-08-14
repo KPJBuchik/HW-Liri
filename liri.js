@@ -64,7 +64,7 @@ function bandsData(userSearch) {
     axios.get("https://rest.bandsintown.com/artists/" + userSearch + "\/events?app_id=codingbootcamp").then(
         function (response) {
 
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < response.data.length; i++) {
                 console.log("+><++><++><++><++><++><+CONCERTS+><++><++><++><++><++><+")
                 console.log("Venue: " + response.data[i].venue.name)
                 console.log("Location: " + response.data[i].venue.city)
@@ -89,7 +89,7 @@ function spotifyData(userSearch) {
                 return;
             } else {
                 // console.log(JSON.stringify(data.tracks.items, null, 2));
-                for (var i = 0; i < 5; i++) {
+                for (var i = 0; i < data.tracks.items.length; i++) {
                     console.log("+><++><++><++><++><++><+SONGS+><++><++><++><++><++><+")
                     console.log("Artist: " + data.tracks.items[i].artists[0].name)
                     console.log("Song: " + data.tracks.items[i].name)
