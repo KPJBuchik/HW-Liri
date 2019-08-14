@@ -33,11 +33,11 @@ if (userCommand === "do-what-it-says") {
 function movieData(userSearch) {
     axios.get("http://www.omdbapi.com/?t=" + userSearch + "&y=&plot=short&apikey=trilogy").then(
         function (response) {
-            if (userSearch === undefined) {
+            if (userSearch == undefined) {
                 userSearch = "Mr. Nobody"
 
 
-
+                
             } else {
                 console.log("+><++><++><++><++><++><+MOVIES+><++><++><++><++><++><+")
                 console.log("Title: " + response.data.Title);
@@ -83,18 +83,18 @@ function spotifyData(userSearch) {
         userSearch = "The Sign";
     }
     spotify.search({ type: "track", query: userSearch },
-        function (err, data) {
+        function (err, response) {
             if (err) {
                 console.log("Error occurred: " + err);
                 return;
             } else {
-                // console.log(JSON.stringify(data.tracks.items, null, 2));
-                for (var i = 0; i < data.tracks.items.length; i++) {
+                //console.log(JSON.stringify(data.tracks.items, null, 2));
+                for (var i = 0; i < response.tracks.items.length; i++) {
                     console.log("+><++><++><++><++><++><+SONGS+><++><++><++><++><++><+")
-                    console.log("Artist: " + data.tracks.items[i].artists[0].name)
-                    console.log("Song: " + data.tracks.items[i].name)
-                    console.log("Song Preview: " + data.tracks.items[i].preview_url);
-                    console.log("Album: " + data.tracks.items[i].album.name);
+                    console.log("Artist: " + response.tracks.items[i].artists[0].name)
+                    console.log("Song: " + response.tracks.items[i].name)
+                    console.log("Song Preview: " + response.tracks.items[i].preview_url);
+                    console.log("Album: " + response.tracks.items[i].album.name);
                 }
             }
         })
