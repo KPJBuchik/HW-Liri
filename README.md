@@ -25,4 +25,4 @@ and will search the corresponding API for what the user types after the command.
 
 
 ![liri](liri1.png)
-![liri](liri2.png)
+![liri](liri3.png)
